@@ -5,8 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ISET2018_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
     <Grid>
-        
-    </Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="75"/>
+			<RowDefinition Height="95"/>
+			<RowDefinition Height="5"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="150"/>
+			<ColumnDefinition Width="150"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<TextBlock Text="Bonjour à tous" Height="30" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Center"
+					  Name="tbBonjour" FontFamily="Comic Sans MS" FontSize="16" Foreground="Red">
+			<TextBlock.Effect>
+				<DropShadowEffect Color="Blue"/>
+			</TextBlock.Effect>
+		</TextBlock>
+		<Button Content="C L i c k" Grid.Column="1" Width="75" Height="25" VerticalAlignment="Top" Margin="10"
+				  Name="btnClic" Click="btnClic_Click"/>
+		<Image Source="pack://siteoforigin:,,,/Resources/aaah.gif" Grid.Row="1" Width="100" Height="70" Stretch="Uniform" Name="ImgYeti">
+			<Image.RenderTransform>
+				<RotateTransform Angle="0" CenterX="50" CenterY="35"/>
+			</Image.RenderTransform>
+		</Image>
+		<Rectangle Grid.Row="1" Grid.Column="1" Width="100" Height="80" Fill="BlueViolet" Stroke="Cyan" StrokeThickness="10"
+					  RadiusX="25" RadiusY="15"/>
+		<Ellipse Grid.Row="1" Grid.Column="1" Width="60" Height="25" Fill="Olive" Stroke="Orange" StrokeThickness="3" Opacity="0.7" Panel.ZIndex="2"/>
+		<Polygon Grid.Row="1" Grid.Column="1" Points="10,80,140,80,75,10" Fill="Orange" Opacity="0.4"/>
+		<Button Grid.Column="2" Grid.RowSpan="2" Background="Fuchsia" Name="btnSsBouton" Margin="0,20,10,0"
+				  Click="btnSsBouton_Click">
+			<StackPanel Orientation="Vertical" Width="204">
+				<TextBlock Foreground="Brown" Background="White" FontSize="16" HorizontalAlignment="Center" Padding="3">
+					!!Original!!
+				</TextBlock>
+				<Image Source="pack://siteoforigin:,,,/Resources/body_background.jpg" Width="204" Height="75"/>
+				<Button Name="btnSrBouton" Content="P'tit bouton" Click="btnSrBouton_Click"/>
+			</StackPanel>
+		</Button>
+		<ListBox Name="lbQualite" Grid.Row="3" Grid.Column="1" Width="120"
+					SelectionChanged="lbQualite_SelectionChanged">
+			<ListBoxItem>Mademoiselle</ListBoxItem>
+			<ListBoxItem>Madame</ListBoxItem>
+			<ListBoxItem>Mondameoiseau</ListBoxItem>
+			<ListBoxItem>Monsieur</ListBoxItem>
+			<ListBoxItem>Indéfini</ListBoxItem>
+		</ListBox>
+		<StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="2">
+			<Button Name="btnFen1" Content="Fenêtre 1" Margin="5" Click="btnFen1_Click"/>
+			<Button Name="btnFen2" Content="Fenêtre 2" Margin="5" Click="btnFen2_Click"/>
+			<Button Name="btnFen3" Content="Fenêtre 3" Margin="5" Click="btnFen3_Click"/>
+		</StackPanel>
+	</Grid>
 </Window>
