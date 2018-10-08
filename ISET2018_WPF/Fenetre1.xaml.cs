@@ -22,6 +22,7 @@ namespace ISET2018_WPF
 		public Fenetre1()
 		{
 			InitializeComponent();
+			DataContext = this;
 		}
 	}
 }

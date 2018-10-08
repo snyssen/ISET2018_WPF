@@ -5,8 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ISET2018_WPF"
         mc:Ignorable="d"
-        Title="Fenetre3" Height="450" Width="800">
+        Title="Fenetre3" Height="400" Width="300">
+	<Window.DataContext>
+		<local:Personne ID="24" Pre="Simon" Nom="Ovronnaz"/>
+	</Window.DataContext>
     <Grid>
-        
-    </Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="2*"/>
+		</Grid.RowDefinitions>
+		<StackPanel Name="Bibi">
+			<StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Center">
+				<TextBox Width="50" Text="{Binding Path=ID}"/>
+				<TextBox Width="50" Text="{Binding Path=ID, Mode=OneTime}"/>
+				<!-- Communique du code CS au code XAML -->
+				<TextBox Width="50" Text="{Binding Path=ID, Mode=OneWay}"/>
+				<!-- Communique du code XAML au code CS -->
+				<TextBox Width="50" Text="{Binding Path=ID, Mode=OneWayToSource}"/>
+				<!-- Communique dans les deux sens -->
+				<TextBox Width="50" Text="{Binding Path=ID, Mode=TwoWay}"/>
+			</StackPanel>
+			<TextBox Width="50" Text="{Binding Path=Pre, Mode=TwoWay}"/>
+			<TextBox Width="50" Text="{Binding Path=Nom, Mode=TwoWay}"/>
+			<Button Name="BtnVerifier" Content="Vérifier" Margin="5" Click="BtnVerifier_Click"/>
+			<Button Name="btnAssigner" Content="Assigner" Margin="5" Command="{Binding BoutonAssigner}"/>
+		</StackPanel>
+		<StackPanel Name="Bibis" Grid.Row="1" Margin="10">
+			<ListView Name="ListePersonnes" Height="100" Width="240" ItemsSource="{Binding Path=LstPers}">
+				<ListView.View>
+					<GridView>
+						<!-- Path non nécessaire dans le binding si il n'y a pas d'autre propriété -->
+						<GridViewColumn Width="120" Header="Prénom" DisplayMemberBinding="{Binding Pre}"/>
+						<GridViewColumn Width="120" Header="Nom" DisplayMemberBinding="{Binding Nom}"/>
+					</GridView> 
+				</ListView.View>
+			</ListView>
+			<ListBox Name="lbPersonnes" Width="150" ItemsSource="{Binding Path=LstPers}" DisplayMemberPath="Nom" Margin="5" />
+		</StackPanel>
+	</Grid>
 </Window>

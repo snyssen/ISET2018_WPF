@@ -6,7 +6,16 @@
         xmlns:local="clr-namespace:ISET2018_WPF"
         mc:Ignorable="d"
         Title="Fenetre1" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+	<StackPanel>
+		<WrapPanel Margin="5"> <!-- Le WrapPanel va automatiquement à la ligne quand le contenu dépasse, contrairement au StackPanel -->
+			<TextBlock Text="Titre : "/>
+			<TextBox Width="150" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
+		</WrapPanel>
+		<WrapPanel Margin="5">
+			<TextBlock Text="Dimension : "/>
+			<TextBox Width="50" Text="{Binding Width}"/>
+			<TextBlock Text=" x  "/>
+			<TextBox Width="50" Text="{Binding Height}"/>
+		</WrapPanel>
+	</StackPanel>
 </Window>

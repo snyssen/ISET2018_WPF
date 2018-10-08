@@ -5,8 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ISET2018_WPF"
         mc:Ignorable="d"
-        Title="Fenetre2" Height="450" Width="800">
+        Title="Fenetre2" Height="300" Width="300">
     <Grid>
-        
-    </Grid>
+		<Grid.Resources>
+			<RotateTransform x:Key="Rota" Angle="0"/>
+			<local:Degre2Radian x:Key="Convertisseur"/>
+		</Grid.Resources>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<Rectangle Fill="Red" Width="100" Height="50">
+			<Rectangle.RenderTransform>
+				<RotateTransform Angle="{Binding ElementName=Barre, Path=Value}"
+									  CenterX="50" CenterY="25"/>
+			</Rectangle.RenderTransform>
+		</Rectangle>
+		<Rectangle Fill="Yellow" Width="50" Height="100" LayoutTransform="{StaticResource Rota}"/>
+		<Slider Name="Barre" Grid.Row="1" Minimum="0" Maximum="360" Value="{Binding Source={StaticResource Rota}, Path=Angle}"/>
+		<TextBox Grid.Row="2" TextAlignment="Center" Text="{Binding ElementName=Barre, Path=Value, Converter={StaticResource Convertisseur}}"/>
+		<TextBox Grid.Row="3" TextAlignment="Center" Text="{Binding Source={StaticResource Rota}, Path=Angle, Converter={StaticResource Convertisseur}}"/>
+	</Grid>
 </Window>
