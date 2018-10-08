@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace ISET2018_WPF
 {
@@ -20,14 +21,39 @@ namespace ISET2018_WPF
 	/// </summary>
 	public partial class Fenetre3 : Window
 	{
+		Personne p;
+		// Différence par rapport à une liste, les binding du XAML fonctionnent (les listes ne réagissent pas bien aux bindings)
+		private ObservableCollection<Personne> _LstPers;
+		public ObservableCollection<Personne> LstPers
+		{
+			get { return _LstPers; }
+			set { _LstPers = value; }
+		}
+		public CmdAssigner BoutonAssigner { get; set; }
+
 		public Fenetre3()
 		{
 			InitializeComponent();
+			p = new Personne(2, "Winch", "Largo");
+			Bibi.DataContext = p;
+			LstPers = new ObservableCollection<Personne>();
+			LstPers.Add(new Personne(2, "Winch", "Largo"));
+			LstPers.Add(new Personne(4, "Desbois", "Robin"));
+			LstPers.Add(new Personne(8, "Tombal", "Pierre"));
+			Bibis.DataContext = this;
+			BoutonAssigner = new CmdAssigner(Assigner);
+			btnAssigner.DataContext = this;
 		}
 
 		private void BtnVerifier_Click(object sender, RoutedEventArgs e)
 		{
-
+			MessageBox.Show("Vérification : " + p.ID.ToString() + " : " + p.Pre + " " + p.Nom);
+		}
+		private void Assigner()
+		{
+			p.ID = 24;
+			p.Nom = "Haddock";
+			p.Pre = "Archibald";
 		}
 	}
 

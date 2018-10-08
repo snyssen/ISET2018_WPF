@@ -41,6 +41,12 @@
 				</ListView.View>
 			</ListView>
 			<ListBox Name="lbPersonnes" Width="150" ItemsSource="{Binding Path=LstPers}" DisplayMemberPath="Nom" Margin="5" />
+			<StackPanel Name="ZoneEdition" Margin="5">
+				<!-- ElementName = définit dans le XAML, Path = définit dans le CS -->
+				<TextBox Width="120" Text="{Binding ElementName=ListePersonnes, Path=SelectedItem.ID}"/>
+				<TextBox Width="120" Text="{Binding ElementName=ListePersonnes, Path=SelectedItem.Pre}"/>
+				<TextBox Width="120" Text="{Binding ElementName=ListePersonnes, Path=SelectedItem.Nom}"/>
+			</StackPanel>
 		</StackPanel>
 	</Grid>
 </Window>
